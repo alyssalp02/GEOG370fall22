@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6</title>
+</head>
+<body>
+<h1>Homework 6b: Census data ratios and categories </h1>
+<h2>Alyssa Parrnelli</h2>
+<h3>Original Count Choropleth (Natural Breaks)</h3>
+<!-- Your map goes here -->
+<a href="./Count_natural_breaks.png">
+    <img src="./Count_natural_breaks.png" alt="Count map using natural breaks" width='500px'>
+    </a>
+<br>
+
+<h3>Ratio Choropleth (Natural Breaks)</h3>
+<!-- Your map goes here -->
+<a href="./ratio_natural_breaks.png">
+    <img src="./ratio_natural_breaks.png" alt="Ratio map using natural breaks" width='500px'>
+    </a>
+<br>
+
+<h3>Ratio Choropleth (Equal Count)</h3>
+<!-- Your map goes here -->
+<a href="./ratio_equal_count.png">
+    <img src="./ratio_equal_count.png" alt="Ratio map using equal count" width='500px'>
+    </a>
+<br>
+
+<h3>Ratio Choropleth (Equal Interval)</h3>
+<!-- Your map goes here -->
+<a href="./ratio_equal_interval.png">
+    <img src="./ratio_equal_interval.png" alt="Ratio map using equal interval" width='500px'>
+    </a>
+<br>
+
+<!-- Explain the ratio -->
+The ratio I used to create these choropleths was the number of kindergartners enrolled in each county 
+divided by the total population of people over the age of 3 in each county. This ratio shows very different results
+from the original count choropleth.
+
+<!-- Pros + Cons of Classification Schemes -->
+The three classification schemes I used are natural breaks, equal count, and equal interval. 
+Natural breaks creates boundaries where there are big differences in data values. They are more helpful more data-specific classifications.
+Equal count (quantile) means that each class contains an equal number of features. It is good for linear data but can be misleading.
+Equal interval creates equal-sized sections. This is often good for familiar data ranges and values in relation to other values. 
+
+</body>
+</html>
