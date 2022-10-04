@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/ratio_layer_exported_0.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[32.45581003990189,-128.99455032584862],[42.35905734456587,-108.52466685571746]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_ratio_layer_exported_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['STATEFP'] !== null ? autolinker.link(feature.properties['STATEFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYFP'] !== null ? autolinker.link(feature.properties['COUNTYFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['COUNTYNS'] !== null ? autolinker.link(feature.properties['COUNTYNS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOID'] !== null ? autolinker.link(feature.properties['GEOID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NAME</th>\
+                        <td>' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAMELSAD'] !== null ? autolinker.link(feature.properties['NAMELSAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LSAD'] !== null ? autolinker.link(feature.properties['LSAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLASSFP'] !== null ? autolinker.link(feature.properties['CLASSFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['MTFCC'] !== null ? autolinker.link(feature.properties['MTFCC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CSAFP'] !== null ? autolinker.link(feature.properties['CSAFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CBSAFP'] !== null ? autolinker.link(feature.properties['CBSAFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['METDIVFP'] !== null ? autolinker.link(feature.properties['METDIVFP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FUNCSTAT'] !== null ? autolinker.link(feature.properties['FUNCSTAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ALAND'] !== null ? autolinker.link(feature.properties['ALAND'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['AWATER'] !== null ? autolinker.link(feature.properties['AWATER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INTPTLAT'] !== null ? autolinker.link(feature.properties['INTPTLAT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['INTPTLON'] !== null ? autolinker.link(feature.properties['INTPTLON'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Ratio'] !== null ? autolinker.link(feature.properties['Ratio'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLEANED_20'] !== null ? autolinker.link(feature.properties['CLEANED_20'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLEANED__1'] !== null ? autolinker.link(feature.properties['CLEANED__1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLEANED__2'] !== null ? autolinker.link(feature.properties['CLEANED__2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CLEANED__3'] !== null ? autolinker.link(feature.properties['CLEANED__3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CLEANED__4</th>\
+                        <td>' + (feature.properties['CLEANED__4'] !== null ? autolinker.link(feature.properties['CLEANED__4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ratio_layer_exported_0_0(feature) {
+            if (feature.properties['CLEANED__4'] >= 7.000000 && feature.properties['CLEANED__4'] <= 25.400000 ) {
+                return {
+                pane: 'pane_ratio_layer_exported_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,251,253,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CLEANED__4'] >= 25.400000 && feature.properties['CLEANED__4'] <= 29.000000 ) {
+                return {
+                pane: 'pane_ratio_layer_exported_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(220,220,236,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CLEANED__4'] >= 29.000000 && feature.properties['CLEANED__4'] <= 31.000000 ) {
+                return {
+                pane: 'pane_ratio_layer_exported_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(163,160,203,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CLEANED__4'] >= 31.000000 && feature.properties['CLEANED__4'] <= 35.000000 ) {
+                return {
+                pane: 'pane_ratio_layer_exported_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(106,81,163,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['CLEANED__4'] >= 35.000000 && feature.properties['CLEANED__4'] <= 57.000000 ) {
+                return {
+                pane: 'pane_ratio_layer_exported_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(63,0,125,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_ratio_layer_exported_0');
+        map.getPane('pane_ratio_layer_exported_0').style.zIndex = 400;
+        map.getPane('pane_ratio_layer_exported_0').style['mix-blend-mode'] = 'normal';
+        var layer_ratio_layer_exported_0 = new L.geoJson(json_ratio_layer_exported_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ratio_layer_exported_0',
+            layerName: 'layer_ratio_layer_exported_0',
+            pane: 'pane_ratio_layer_exported_0',
+            onEachFeature: pop_ratio_layer_exported_0,
+            style: style_ratio_layer_exported_0_0,
+        });
+        bounds_group.addLayer(layer_ratio_layer_exported_0);
+        map.addLayer(layer_ratio_layer_exported_0);
+        setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"NAME": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_NAME = document.createElement('div');
+            div_NAME.id = "div_NAME";
+            div_NAME.className= "filterselect";
+            document.getElementById("menu").appendChild(div_NAME);
+            sel_NAME = document.createElement('select');
+            sel_NAME.multiple = true;
+            sel_NAME.size = 10;
+            sel_NAME.id = "sel_NAME";
+            var NAME_options_str = "<option value='' unselected></option>";
+            sel_NAME.onchange = function(){filterFunc()};
+            NAME_options_str  += '<option value="Alameda">Alameda</option>';
+            NAME_options_str  += '<option value="Alpine">Alpine</option>';
+            NAME_options_str  += '<option value="Amador">Amador</option>';
+            NAME_options_str  += '<option value="Butte">Butte</option>';
+            NAME_options_str  += '<option value="Calaveras">Calaveras</option>';
+            NAME_options_str  += '<option value="Colusa">Colusa</option>';
+            NAME_options_str  += '<option value="Contra Costa">Contra Costa</option>';
+            NAME_options_str  += '<option value="Del Norte">Del Norte</option>';
+            NAME_options_str  += '<option value="El Dorado">El Dorado</option>';
+            NAME_options_str  += '<option value="Fresno">Fresno</option>';
+            NAME_options_str  += '<option value="Glenn">Glenn</option>';
+            NAME_options_str  += '<option value="Humboldt">Humboldt</option>';
+            NAME_options_str  += '<option value="Imperial">Imperial</option>';
+            NAME_options_str  += '<option value="Inyo">Inyo</option>';
+            NAME_options_str  += '<option value="Kern">Kern</option>';
+            NAME_options_str  += '<option value="Kings">Kings</option>';
+            NAME_options_str  += '<option value="Lake">Lake</option>';
+            NAME_options_str  += '<option value="Lassen">Lassen</option>';
+            NAME_options_str  += '<option value="Los Angeles">Los Angeles</option>';
+            NAME_options_str  += '<option value="Madera">Madera</option>';
+            NAME_options_str  += '<option value="Marin">Marin</option>';
+            NAME_options_str  += '<option value="Mariposa">Mariposa</option>';
+            NAME_options_str  += '<option value="Mendocino">Mendocino</option>';
+            NAME_options_str  += '<option value="Merced">Merced</option>';
+            NAME_options_str  += '<option value="Modoc">Modoc</option>';
+            NAME_options_str  += '<option value="Mono">Mono</option>';
+            NAME_options_str  += '<option value="Monterey">Monterey</option>';
+            NAME_options_str  += '<option value="Napa">Napa</option>';
+            NAME_options_str  += '<option value="Nevada">Nevada</option>';
+            NAME_options_str  += '<option value="Orange">Orange</option>';
+            NAME_options_str  += '<option value="Placer">Placer</option>';
+            NAME_options_str  += '<option value="Plumas">Plumas</option>';
+            NAME_options_str  += '<option value="Riverside">Riverside</option>';
+            NAME_options_str  += '<option value="Sacramento">Sacramento</option>';
+            NAME_options_str  += '<option value="San Benito">San Benito</option>';
+            NAME_options_str  += '<option value="San Bernardino">San Bernardino</option>';
+            NAME_options_str  += '<option value="San Diego">San Diego</option>';
+            NAME_options_str  += '<option value="San Francisco">San Francisco</option>';
+            NAME_options_str  += '<option value="San Joaquin">San Joaquin</option>';
+            NAME_options_str  += '<option value="San Luis Obispo">San Luis Obispo</option>';
+            NAME_options_str  += '<option value="San Mateo">San Mateo</option>';
+            NAME_options_str  += '<option value="Santa Barbara">Santa Barbara</option>';
+            NAME_options_str  += '<option value="Santa Clara">Santa Clara</option>';
+            NAME_options_str  += '<option value="Santa Cruz">Santa Cruz</option>';
+            NAME_options_str  += '<option value="Shasta">Shasta</option>';
+            NAME_options_str  += '<option value="Sierra">Sierra</option>';
+            NAME_options_str  += '<option value="Siskiyou">Siskiyou</option>';
+            NAME_options_str  += '<option value="Solano">Solano</option>';
+            NAME_options_str  += '<option value="Sonoma">Sonoma</option>';
+            NAME_options_str  += '<option value="Stanislaus">Stanislaus</option>';
+            NAME_options_str  += '<option value="Sutter">Sutter</option>';
+            NAME_options_str  += '<option value="Tehama">Tehama</option>';
+            NAME_options_str  += '<option value="Trinity">Trinity</option>';
+            NAME_options_str  += '<option value="Tulare">Tulare</option>';
+            NAME_options_str  += '<option value="Tuolumne">Tuolumne</option>';
+            NAME_options_str  += '<option value="Ventura">Ventura</option>';
+            NAME_options_str  += '<option value="Yolo">Yolo</option>';
+            NAME_options_str  += '<option value="Yuba">Yuba</option>';
+            sel_NAME.innerHTML = NAME_options_str;
+            div_NAME.appendChild(sel_NAME);
+            var lab_NAME = document.createElement('div');
+            lab_NAME.innerHTML = 'NAME';
+            lab_NAME.className = 'filterlabel';
+            div_NAME.appendChild(lab_NAME);
+            var reset_NAME = document.createElement('div');
+            reset_NAME.innerHTML = 'clear filter';
+            reset_NAME.className = 'filterlabel';
+            reset_NAME.onclick = function() {
+                var options = document.getElementById("sel_NAME").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_NAME.appendChild(reset_NAME);
+        </script>
+    </body>
+</html>
