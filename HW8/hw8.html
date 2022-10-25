@@ -8,23 +8,38 @@
 <body>
 <h1>Homework 8 </h1>
 <h2>Alyssa Parrnelli</h2>
-<h3>Ratio Choropleth</h3>
+<h2>Map</h2>
 <!-- Your map goes here -->
-<a href="./alcohol_driving_deaths_choropleth.png">
-    <img src="./alcohol_driving_deaths_choropleth.png" alt="Percent of Driving Deaths Involving Alcohol" width='500px'>
+<a href="./drought_by_crop.png">
+    <img src="./drought_by_crop.png" alt="Most grown crops in US states experiencing drought" width='1000px'>
     </a>
 <br>
 <br>
-This map shows the percent of deaths that are involved with alcohol out of all driving deaths in each county.
-I was interested in this data because I wanted to see the difference between the count of alcohol related driving deaths
-and the percent of deaths that are alcohol related. I chose California because that is where I am originally from.  
+<br>
+This map shows the states in the US which are experiencing at least a D2 level (severe) drought somewhere within the state.
+The map shows the crop which is grown in the largest amount of acres in each state. 
+To create this map, I used intersect to see only the states that were at least a D2 drought and intersected that with the agricultural information. Only the states experiencing drought remain on the map.
+I then used dissolve to create regions based on the most commonly grown crop instead of looking at individual states.
 
-<!-- Link to your shapefile in Github and you CSV -->
+<br>
+<br>
+I wanted to see if there was a correlation between states that were in some kind of drought and the types of crops grown there.
+By looking at the map, it seems that a majority of areas experiencing drought grow wheat. 
+
+<!-- Link to data cleaned & online -->
 <h2>Data used for this project</h2>
-    <a href="./CLEANED_2022 County_Health_Rankings_California_Data.csv"> Cleaned CSV dataset </a>
+    <a href="./Largest_crop_per_state.csv"> Cleaned CSV agricultural dataset </a>
     <p></p>
-    <a href="https://www.countyhealthrankings.org/app/california/2021/downloads"> CSV dataset link </a>
+    <a href="https://droughtmonitor.unl.edu/DmData/DataDownload/ComprehensiveStatistics.aspx"> CSV dataset link to drought information </a>
     <p></p>
-    <a href="https://alyssalp02.github.io/GEOG370fall22/HW7/ratio_4326.geojson"> Link to geoJSON in local projection</a>
+
+
+    <a href="./drought_by_state 2.csv"> Cleaned CSV drought dataset </a>
+    <p></p>    
+    <a href="https://www.fsa.usda.gov/news-room/efoia/electronic-reading-room/frequently-requested-information/crop-acreage-data/index"> Excel dataset link to crop acerage information from August 2, 2021</a>
+    <p></p>
+
+
+    <a href="https://www2.census.gov/geo/tiger/TIGER2022/STATE/"> Link to vector layer of states</a>
 </body>
 </html>
